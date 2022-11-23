@@ -4,7 +4,7 @@ const createPerson = async (personDetails) => {
   const result = await neo4j.run(
     `
       unwind $personDetails as properties 
-      create(person:Person {$...personDetails}) 
+      create(person:Person) 
       SET person = properties 
       return person
     `,
