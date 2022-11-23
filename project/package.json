@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "config": {
-    "webservice_name": "neo4j-webservice",
+    "webservice_name": "social-client-webservice",
     "webservice_port": 3000
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js $npm_package_config_webservice_port $npm_package_config_webservice_name&",
-    "stop": "pkill $npm_package_config_webservice_name"
+    "stop": "pkill $npm_package_config_webservice_name",
+    "restart": "npm run stop || npm run start"
   },
   "author": "",
   "license": "ISC",

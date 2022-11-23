@@ -1,34 +1,34 @@
 const PersonRepository = require("../repository/person.repository")
+const PersonDetailsMapper = require("../mapper/personDetails.mapper");
 
 const post = async (req, res) => {
-  const personDetails = {
-    name: req.body.name
-  };
+  const personDetails = PersonDetailsMapper.fromIndexFormRequestBody(req.body);
 
-  const status = {
+  console.log({
     method: "PersonController.post",
     message: "received personDetails",
     personDetails
-  };
+  });
 
-  console.log(status);
-
-  let result = {};
+  let result;
   try {
     result = await PersonRepository.createPerson(personDetails);
   } catch (err) {
-    result.err = err;
+    result = { err };
   }
 
-  const postWriteStatus = {
+  console.log({
     method: "PersonController.post called PersonRepository.createPerson(personDetails)",
-    result: result
-  };
+    result: JSON.stringify(result)
+  });
 
-  console.log(postWriteStatus);
+  if (req.query.debug === "true") {
+    res.json(result);
+  } else {
+    res.redirect("/");
+  }
 
-  res.send(postWriteStatus);
-}
+};
 
 module.exports = {
   post
