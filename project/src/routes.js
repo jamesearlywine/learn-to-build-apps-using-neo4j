@@ -1,5 +1,5 @@
-const indexController = require('./controller/index.js');
-const personController = require('./controller/person.js');
+const indexController = require('./controller/index.controller.js');
+const personController = require('./controller/person.controller.js');
 
 module.exports = {
     forApp: function(app) {

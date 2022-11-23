@@ -1,4 +1,4 @@
-const neo4j = require('../service/neo4j.client.provider').getNeo4jClient();
+const PersonRespository = require("../repository/person.repository")
 
 const post = async (req, res) => {
   const personDetails = {
@@ -13,12 +13,7 @@ const post = async (req, res) => {
 
   console.log(status);
 
-  const result = await neo4j.run(
-    `create(a:Person {name:$personDetails.name})`,
-    {
-      personDetails
-    }
-  );
+  const result = await
 
 
 
