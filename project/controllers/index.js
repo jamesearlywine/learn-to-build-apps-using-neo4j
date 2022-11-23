@@ -17,9 +17,3 @@ const get = async (req, res) => {
 module.exports = {
     get
 }
-
-
-
-// neo4j.run("Create (a:Person {name:'Arthur', title: 'King'}) return a").then((result) => {
-//     console.log("created King Arthur, result", JSON.stringify(result.records));
-// });
