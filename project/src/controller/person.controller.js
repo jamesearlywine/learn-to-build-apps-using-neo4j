@@ -1,4 +1,4 @@
-const PersonRespository = require("../repository/person.repository")
+const PersonRepository = require("../repository/person.repository")
 
 const post = async (req, res) => {
   const personDetails = {
@@ -9,15 +9,25 @@ const post = async (req, res) => {
     method: "PersonController.post",
     message: "received personDetails",
     personDetails
-  }
+  };
 
   console.log(status);
 
-  const result = await
+  let result = {};
+  try {
+    result = await PersonRepository.createPerson(personDetails);
+  } catch (err) {
+    result.err = err;
+  }
 
+  const postWriteStatus = {
+    method: "PersonController.post called PersonRepository.createPerson(personDetails)",
+    result: result
+  };
 
+  console.log(postWriteStatus);
 
-  res.send(status);
+  res.send(postWriteStatus);
 }
 
 module.exports = {

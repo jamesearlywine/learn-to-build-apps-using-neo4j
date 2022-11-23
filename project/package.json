@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js&",
-    "stop": "node app.stop.js"
+    "start": "node app.js 3000&",
+    "stop": "kill $(lsof -t -i :3000)"
   },
   "author": "",
   "license": "ISC",
