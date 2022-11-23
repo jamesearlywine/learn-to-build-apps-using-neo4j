@@ -1,4 +1,4 @@
-const neo4j = require('../service/neo4j.client.provider').getNeo4jClient();
+const neo4j = require('../services/neo4j.client.provider').getNeo4jClient();
 const PersonMapper = require('../mappers/person.mapper');
 
 const get = async (req, res) => {
