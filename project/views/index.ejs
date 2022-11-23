@@ -1,0 +1,16 @@
+<html>
+  <head></head>
+  <body>
+  <h3>Add Person</h3>
+    <form method="POST" action="/person">
+      <input type="text" name="name" placeholder="Name">
+      <input type="submit" name="submit" value="submit">
+    </form>
+    <h3>People</h3>
+    <ul>
+      <% persons.forEach((person) => { %>
+        <li><%= person.name %></li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
