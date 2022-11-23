@@ -5,6 +5,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const routes = require('./src/routes.js');
 
+const port = +process.argv[2];
+process.title = process.argv[3];
+
 const app = express();
 
 app.set("views", path.join(__dirname, "view"));
@@ -18,7 +21,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 routes.forApp(app);
 
-const port = +process.argv[2];
 app.listen(port);
 
 console.log(`\nServer started on port ${port}\n`);

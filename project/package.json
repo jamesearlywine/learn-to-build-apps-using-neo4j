@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "config": {
+    "webservice_name": "neo4j-webservice",
+    "webservice_port": 3000
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js 3000&",
-    "stop": "kill $(lsof -t -i :3000)"
+    "start": "node app.js $npm_package_config_webservice_port $npm_package_config_webservice_name&",
+    "stop": "pkill $npm_package_config_webservice_name"
   },
   "author": "",
   "license": "ISC",
