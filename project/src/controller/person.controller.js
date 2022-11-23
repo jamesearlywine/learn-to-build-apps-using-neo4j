@@ -1,8 +1,8 @@
 const PersonRepository = require("../repository/person.repository")
-const PersonDetailsMapper = require("../mapper/personDetails.mapper");
+const PersonDetails = require("../entity/personDetails");
 
 const post = async (req, res) => {
-  const personDetails = PersonDetailsMapper.fromIndexFormRequestBody(req.body);
+  const personDetails = PersonDetails.fromIndexFormRequestBody(req.body);
 
   console.log({
     method: "PersonController.post",

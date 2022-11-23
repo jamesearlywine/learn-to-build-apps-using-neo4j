@@ -1,19 +1,18 @@
-const neo4j = require('../service/neo4j.client.provider').getNeo4jClient();
-const PersonMapper = require('../mapper/person.mapper');
+const PersonRepository = require("../repository/person.repository")
 
 const get = async (req, res) => {
-    const result = await neo4j.run("MATCH (n:Person) RETURN n");
-    // console.log("result records: ", JSON.stringify(result.records));
+    const persons = await PersonRepository.getAll();
 
-    let persons = result.records.map(PersonMapper.fromNeo4jRecord);
+    console.log({
+        message: "IndexController.get",
+        persons
+    });
 
     res.render("index", {
         persons
     });
 };
 
-
-
 module.exports = {
     get
-}
+};
