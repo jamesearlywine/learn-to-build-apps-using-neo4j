@@ -6,6 +6,6 @@ module.exports = class PersonDetails {
   static fromIndexFormRequestBody (reqBody) {
     delete(reqBody.submit);
 
-    return {...reqBody};
+    return new PersonDetails({...reqBody});
   }
 };

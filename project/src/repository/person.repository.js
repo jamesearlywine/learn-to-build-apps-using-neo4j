@@ -1,5 +1,5 @@
 const neo4j = require('../service/neo4j.client.provider').getNeo4jClient();
-const Person = require ("../entity/person");
+const Person = require ("../entity/Person");
 
 const getAll = async() => {
   const result = await neo4j.run("MATCH (n:Person) RETURN n");

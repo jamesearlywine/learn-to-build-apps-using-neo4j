@@ -1,15 +1,18 @@
-module.exports = class Person {
+const Entity = require("./Entity");
+
+module.exports = class Person extends Entity {
   constructor(properties) {
-    this.id = properties.id;
+    super(properties);
+
     this.name = properties.name;
 
     Object.assign(this, properties);
   }
 
   static fromNeo4jRecord (record) {
-    return {
+    return new Entity({
       id: record._fields[0].identity.low,
       name: record._fields[0].properties.name
-    }
+    });
   }
-}
+};
