@@ -81,5 +81,6 @@ const createBirthplace = async (birthplaceDetails) => {
 module.exports = {
   getAll,
   createPerson,
-  createFriendship
+  createFriendship,
+  createBirthplace
 };
