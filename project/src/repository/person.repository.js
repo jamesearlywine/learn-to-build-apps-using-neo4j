@@ -73,5 +73,5 @@ const createFriendship = async (options) => {
 module.exports = {
   getAll,
   createPerson,
-  createRelationship
+  createFriendship
 };
