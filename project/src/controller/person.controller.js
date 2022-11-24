@@ -42,7 +42,7 @@ const createFriendship = async (req, res) => {
 
   let result;
   try {
-    result = await PersonRepository.createRelationship(friendshipDetails);
+    result = await PersonRepository.createFriendship(friendshipDetails);
   } catch (err) {
     result = { err };
   }
