@@ -8,6 +8,22 @@ const getAll = async() => {
   return locations;
 };
 
+const createLocation = async (locationDetails) => {
+  const result = await neo4j.run(
+    `
+      create(location:Location) 
+      SET location = $locationDetails 
+      return location
+    `,
+    {
+      locationDetails
+    }
+  );
+
+  return Location.fromNeo4jRecord(result.records[0]);
+};
+
 module.exports = {
   getAll,
+  createLocation
 };
