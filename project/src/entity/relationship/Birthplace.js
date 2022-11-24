@@ -7,6 +7,7 @@ module.exports = class Birthplace {
 
     this.person = properties.person;
     this.location = properties.location;
+    this.year = properties.year;
 
     Object.assign(this.properties);
   }
@@ -24,6 +25,7 @@ module.exports = class Birthplace {
 
     return new Birthplace({
       id: relationship.identity.low,
+      year: relationship.properties.year,
       person,
       location
     });

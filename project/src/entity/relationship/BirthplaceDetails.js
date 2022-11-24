@@ -3,6 +3,7 @@ module.exports = class BirthplaceDetails {
     this.personName = properties.personName;
     this.locationCity = properties.locationCity;
     this.locationState = properties.locationState;
+    this.year = properties.year;
 
     Object.assign(this, properties);
   }
