@@ -1,5 +1,8 @@
 module.exports = class LocationDetails {
   constructor(properties) {
+    this.city = properties.city;
+    this.state = properties.state;
+
     Object.assign(this, properties);
   }
 
