@@ -67,7 +67,7 @@ const createFriendship = async (options) => {
     friendship: JSON.stringify(friendship)
   });
 
-  return response;
+  return friendship;
 };
 
 module.exports = {
