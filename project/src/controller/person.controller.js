@@ -1,6 +1,6 @@
 const PersonRepository = require("../repository/person.repository")
 const PersonDetails = require("../entity/PersonDetails");
-const FriendshipDetails = require("../entity/FriendshipDetails")
+const FriendshipDetails = require("../entity/relationship/FriendshipDetails")
 
 const post = async (req, res) => {
   const personDetails = PersonDetails.fromIndexFormRequestBody(req.body);
