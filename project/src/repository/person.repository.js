@@ -31,8 +31,8 @@ const createPerson = async (personDetails) => {
   return Person.fromNeo4jRecord(result.records[0]);
 };
 
-const createFriendship = async (options) => {
-  const { firstPersonName, secondPersonName } = options;
+const createFriendship = async (friendshipDetails) => {
+  const { firstPersonName, secondPersonName } = friendshipDetails;
 
   const queryTemplate = `
     match (personA:Person) WHERE personA.name=$firstPersonName 
@@ -68,6 +68,14 @@ const createFriendship = async (options) => {
   });
 
   return friendship;
+};
+
+const createBirthplace = async (birthplaceDetails) => {
+  console.log({
+    method: "PersonRepository.createBirthplace",
+    message: "received birthplaceDetails",
+    birthplaceDetails
+  });
 };
 
 module.exports = {

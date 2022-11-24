@@ -1,6 +1,7 @@
 const PersonRepository = require("../repository/person.repository")
 const PersonDetails = require("../entity/PersonDetails");
 const FriendshipDetails = require("../entity/relationship/FriendshipDetails")
+const BirthplaceDetails = require("../entity/relationship/BirthplaceDetails");
 
 const post = async (req, res) => {
   const personDetails = PersonDetails.fromIndexFormRequestBody(req.body);
@@ -48,7 +49,8 @@ const createFriendship = async (req, res) => {
   }
 
   console.log({
-    method: "PersonController.createFriendship called PersonRepository.createRelationship(friendshipDetails)",
+    method: "PersonController.createFriendship",
+    message:  "called PersonRepository.createRelationship(friendshipDetails)",
     result: JSON.stringify(result)
   });
 
@@ -57,9 +59,39 @@ const createFriendship = async (req, res) => {
   } else {
     res.redirect("/");
   }
-}
+};
+
+const createBirthplace = async(req, res) => {
+  const birthplaceDetails = BirthplaceDetails.fromIndexFormRequestBody(req.body);
+
+  console.log({
+    method: "PersonController.createBirthplace",
+    message: "received birthplaceDetails",
+    birthplaceDetails
+  });
+
+  let result;
+  try {
+    result = await PersonRepository.createBirthplace(birthplaceDetails);
+  } catch (err) {
+    result = { err }
+  }
+
+  console.log({
+    method: "PersonController.createBirthplace",
+    message: "called PersonRepository.createBirthplace(birthplaceDetails)",
+    result
+  });
+
+  if (req.query.debug === "true") {
+    res.json(result);
+  } else {
+    res.redirect("/");
+  }
+};
 
 module.exports = {
+  post,
   createFriendship,
-  post
+  createBirthplace,
 };

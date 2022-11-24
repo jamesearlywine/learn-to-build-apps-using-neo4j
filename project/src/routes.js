@@ -7,6 +7,7 @@ module.exports = {
 
         app.post('/person', PersonController.post);
         app.post('/friendship', PersonController.createFriendship)
+        app.post('/birthplace', PersonController.createBirthplace)
 
         app.post('/location', LocationController.post);
     }
