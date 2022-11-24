@@ -1,5 +1,6 @@
 const PersonRepository = require("../repository/person.repository")
 const PersonDetails = require("../entity/PersonDetails");
+const FriendshipDetails = require("../entity/FriendshipDetails")
 
 const post = async (req, res) => {
   const personDetails = PersonDetails.fromIndexFormRequestBody(req.body);
@@ -30,6 +31,35 @@ const post = async (req, res) => {
 
 };
 
+const createFriendship = async (req, res) => {
+  const friendshipDetails = FriendshipDetails.fromIndexFormRequestBody(req.body);
+
+  console.log({
+    method: "PersonController.createFriendship",
+    message: "received friendshipDetails",
+    friendshipDetails
+  });
+
+  let result;
+  try {
+    result = await PersonRepository.createRelationship(friendshipDetails);
+  } catch (err) {
+    result = { err };
+  }
+
+  console.log({
+    method: "PersonController.createFriendship called PersonRepository.createRelationship(friendshipDetails)",
+    result: JSON.stringify(result)
+  });
+
+  if (req.query.debug === "true") {
+    res.json(result);
+  } else {
+    res.redirect("/");
+  }
+}
+
 module.exports = {
+  createFriendship,
   post
 };

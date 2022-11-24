@@ -5,9 +5,10 @@ module.exports = {
     forApp: function(app) {
         app.get('/', IndexController.get);
 
-        app.post('/person', PersonController.post)
+        app.post('/person', PersonController.post);
+        app.post('/friendship', PersonController.createFriendship)
 
-        app.post('/location', LocationController.post)
+        app.post('/location', LocationController.post);
     }
 }
 

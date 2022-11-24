@@ -7,6 +7,13 @@
       <input type="submit" name="submit" value="submit">
     </form>
 
+    <h3>Add Friendship</h3>
+    <form method="POST" action="/friendship">
+      <input type="text" name="firstPersonName" placeholder="Name">
+      <input type="text" name="secondPersonName" placeholder="Name">
+      <input type="submit" name="submit" value="submit">
+    </form>
+
     <h3>People</h3>
     <ul>
       <% persons.forEach((person) => { %>

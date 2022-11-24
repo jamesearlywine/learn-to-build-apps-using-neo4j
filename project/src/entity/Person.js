@@ -10,9 +10,13 @@ module.exports = class Person extends Entity {
   }
 
   static fromNeo4jRecord (record) {
-    return new Entity({
-      id: record._fields[0].identity.low,
-      name: record._fields[0].properties.name
-    });
+    return Person.fromNeo4jRecordField(record._fields[0]);
+  }
+
+  static fromNeo4jRecordField (field) {
+    return {
+      id: field.identity.low,
+      name: field.properties.name
+    }
   }
 };
