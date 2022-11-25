@@ -90,8 +90,32 @@ const createBirthplace = async(req, res) => {
   }
 };
 
+const viewPersonDetails = async(req, res) => {
+  const personId = req.params.id;
+
+  console.log({
+    method: "PersonController.viewPersonDetails",
+    message: "received personId",
+    personId
+  });
+
+  const person = await PersonRepository.getPersonWithBirthplace(personId);
+
+  console.log({
+    method: "PersonController.viewPersonDetails",
+    message: "called PersonRepository.getById(personId)",
+    person
+  });
+
+  res.render("personDetails", {
+    person,
+    personStringified: JSON.stringify(person)
+  });
+};
+
 module.exports = {
   post,
   createFriendship,
   createBirthplace,
+  viewPersonDetails
 };

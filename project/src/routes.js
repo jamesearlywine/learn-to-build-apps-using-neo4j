@@ -6,8 +6,9 @@ module.exports = {
         app.get('/', IndexController.get);
 
         app.post('/person', PersonController.post);
-        app.post('/friendship', PersonController.createFriendship)
-        app.post('/birthplace', PersonController.createBirthplace)
+        app.post('/friendship', PersonController.createFriendship);
+        app.post('/birthplace', PersonController.createBirthplace);
+        app.get('/view/personDetails/:id', PersonController.viewPersonDetails);
 
         app.post('/location', LocationController.post);
     }
