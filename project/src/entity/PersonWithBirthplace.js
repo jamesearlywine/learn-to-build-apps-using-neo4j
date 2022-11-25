@@ -23,8 +23,9 @@ module.exports = class PersonWithBirthplace extends Entity {
     if (!record) {return null}
 
     return new PersonWithBirthplace({
-      name: record.get("person").properties.name,
-      age: record.get("person").properties.age?.low,
+      id: record.get("person")?.identity.low,
+      name: record.get("person")?.properties.name,
+      age: record.get("person")?.properties.age?.low,
       birthplace: record.get("birthplace")
       ? {
           year: record.get("birthplace")?.properties.year,

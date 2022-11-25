@@ -5,16 +5,15 @@ const driver = neo4j.driver(
 );
 
 module.exports = {
-    neo4jClient: null,
-    createNeo4jClient: function() {
-        this.neo4jClient = driver.session();
+    newSession: function() {
+        return driver.session();
     },
-    getNeo4jClient: function() {
-        if (!this.neo4jClient) {
-            this.createNeo4jClient();
-        }
+    run: async function(queryTemplate, data) {
+        const neo4j = this.newSession();
+        const result = await neo4j.run(queryTemplate, data);
+        neo4j.close();
 
-        return this.neo4jClient;
+        return result;
     }
 };
 

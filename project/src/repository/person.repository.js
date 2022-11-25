@@ -1,4 +1,4 @@
-const neo4j = require('../service/neo4j.client.provider').getNeo4jClient();
+const neo4j = require('../service/neo4j.client.provider');
 const Person = require ("../entity/Person");
 const Friendship = require("../entity/relationship/Friendship");
 const Birthplace = require("../entity/relationship/Birthplace");
@@ -50,6 +50,37 @@ const getPersonWithBirthplace = async(personId) => {
   const personWithBirthplace = PersonWithBirthplace.fromNeo4jRecord(result.records[0]);
 
   return personWithBirthplace;
+};
+
+const getFriendsOfPerson = async(personId) => {
+  const queryTemplate = `
+    MATCH(person:Person)-[:FRIEND]-(friend:Person) 
+    WHERE id(person)=$personId 
+    RETURN friend
+  `;
+  const data = {
+    personId: +personId
+  };
+
+  console.log({
+    method: "PersonRepository.getFriendsOfPerson",
+    message: "was called",
+    personId,
+    queryTemplate,
+    data
+  });
+
+  const result = await neo4j.run(queryTemplate, data);
+
+  console.log({
+    method: "PersonRepository.getFriendsOfPerson",
+    message: "query completed",
+    result: JSON.stringify(result)
+  });
+
+  const friends = result.records.map(Person.fromNeo4jRecord);
+
+  return friends;
 };
 
 
@@ -163,6 +194,7 @@ module.exports = {
   getAll,
   getById,
   getPersonWithBirthplace,
+  getFriendsOfPerson,
   createPerson,
   createFriendship,
   createBirthplace

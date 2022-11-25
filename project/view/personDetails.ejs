@@ -1,8 +1,32 @@
 <html>
-  <head></head>
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css"/>
+  </head>
   <body>
     <h3>Person</h3>
-    <p><%= personStringified %></p>
+    <p>
+      <%= person.name %> is <%=person.age || "unknown"%> years old.
+    </p>
+    <% if (person.birthplace) { %>
+      <p>
+        According to our records, this person was born in <%= person.birthplace?.city %>, <%= person.birthplace?.state %>
+        in the year <%= person.birthplace?.year %>.
+      </p>
+    <% } %>
 
+    <h4>Friends</h4>
+    <p>
+      <% if (friends && friends.length) { %>
+        <% friends.forEach((person) => { %>
+          <li><a href="/view/personDetails/<%= person.id %>"><%= person.name %></a></li>
+        <% }) %>
+      <% } else { %>
+        This person has no friends.
+      <% } %>%>
+    </p>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"/>
   </body>
 </html>

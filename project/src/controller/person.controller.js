@@ -99,17 +99,23 @@ const viewPersonDetails = async(req, res) => {
     personId
   });
 
-  const person = await PersonRepository.getPersonWithBirthplace(personId);
+  const [person, friends] = await Promise.all([
+    PersonRepository.getPersonWithBirthplace(personId),
+    PersonRepository.getFriendsOfPerson(personId)
+  ]);
 
   console.log({
     method: "PersonController.viewPersonDetails",
     message: "called PersonRepository.getById(personId)",
-    person
+    person,
+    friends
   });
 
   res.render("personDetails", {
     person,
-    personStringified: JSON.stringify(person)
+    personStringified: JSON.stringify(person),
+    friends,
+    friendsStringified: JSON.stringify(friends),
   });
 };
 

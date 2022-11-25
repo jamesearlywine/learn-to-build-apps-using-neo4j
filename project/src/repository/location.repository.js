@@ -1,4 +1,4 @@
-const neo4j = require('../service/neo4j.client.provider').getNeo4jClient();
+const neo4j = require('../service/neo4j.client.provider');
 const Location = require ("../entity/Location");
 
 const getAll = async() => {
