@@ -23,7 +23,7 @@ const getById = async(personId) => {
 const getPersonWithBirthplace = async(personId) => {
   const queryTemplate = `
     MATCH(person:Person) WHERE id(person)=$personId 
-    WITH * MATCH(person)-[birthplace:BIRTHPLACE]->(location:Location)
+    WITH * OPTIONAL MATCH(person)-[birthplace:BIRTHPLACE]->(location:Location)
     RETURN person, birthplace, location
     ORDER BY id(birthplace) DESC LIMIT 1
   `;
@@ -47,10 +47,7 @@ const getPersonWithBirthplace = async(personId) => {
     result: JSON.stringify(result)
   });
 
-  const personWithBirthplace = (result.records[0])
-    ? PersonWithBirthplace.fromNeo4jRecord(result.records[0])
-    : {...await getById(personId), birthplace: null}
-  ;
+  const personWithBirthplace = PersonWithBirthplace.fromNeo4jRecord(result.records[0]);
 
   return personWithBirthplace;
 };
