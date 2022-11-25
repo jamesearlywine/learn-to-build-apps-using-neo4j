@@ -6,7 +6,8 @@ const get = async (req, res) => {
     const locations = await LocationRepository.getAll();
 
     console.log({
-        message: "IndexController.get",
+        method: "IndexController.get",
+        message: "rendering persons and locations",
         persons,
         locations
     });
