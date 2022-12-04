@@ -23,7 +23,7 @@ const getById = async(personId) => {
 const getPersonWithBirthplace = async(personId) => {
   const queryTemplate = `
     MATCH(person:Person) WHERE id(person)=$personId 
-    WITH * OPTIONAL MATCH(person)-[birthplace:BIRTHPLACE]->(location:Location)
+    OPTIONAL MATCH(person)-[birthplace:BIRTHPLACE]->(location:Location)
     RETURN person, birthplace, location
     ORDER BY id(birthplace) DESC LIMIT 1
   `;
