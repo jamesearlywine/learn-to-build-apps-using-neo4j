@@ -150,8 +150,9 @@ const createBirthplace = async (birthplaceDetails) => {
   const { personName, locationCity, locationState, year} = birthplaceDetails;
 
   const queryTemplate = `
-    match (person:Person) WHERE person.name=$personName 
-    WITH * match (location:Location) WHERE location.city=$locationCity AND location.state=$locationState 
+    match (person:Person), (location:Location) 
+    WHERE location.city=$locationCity AND location.state=$locationState
+    AND person.name=$personName 
     merge(person)-[relationship:BIRTHPLACE {year:$year}]-(location)
       
     return person, location, relationship
