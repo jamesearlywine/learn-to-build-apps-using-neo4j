@@ -110,8 +110,8 @@ const createFriendship = async (friendshipDetails) => {
   const { firstPersonName, secondPersonName } = friendshipDetails;
 
   const queryTemplate = `
-    match (personA:Person) WHERE personA.name=$firstPersonName 
-    WITH * match (personB:Person) WHERE personB.name=$secondPersonName 
+    match (personA:Person), (personB:Person) 
+    WHERE personA.name=$firstPersonName AND personB.name=$secondPersonName 
     merge(personA)-[relationship:FRIEND]-(personB)
       
     return personA, personB, relationship
